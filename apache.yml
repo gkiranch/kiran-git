@@ -1,0 +1,11 @@
+---
+- hosts: 192.168.230.134
+  tasks:
+    - name: Installs apache web server
+      apt: pkg=httpd state=installed update_cache=true
+      notify:
+        - start apache
+
+  handlers:
+    - name: start apache
+      service: name=httpd state=started
